@@ -96,7 +96,10 @@ const SearchPage: any = (data: any) => {
 export default SearchPage
 
 
-export async function getServerSideProps({ query: {term ,name ,status} }) {
+export async function getServerSideProps({ query: {
+    term = '',
+    name = '',
+    status = ''} }) {
 
     const res = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}&gender=${term}&status=${status}`)
 

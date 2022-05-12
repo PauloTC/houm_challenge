@@ -1,11 +1,10 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/Home.module.css'
-import { HeroCard } from '../components/HeroCard'
-import { HeroCardContainer } from '../components/HeroCardContainer'
-import { InputSearch } from '../components/InputSearch'
+import { useEffect } from 'react'
+import { HeroCardContainer } from '../../components/HeroCardContainer'
+import styles from '../../styles/Home.module.css'
+import Link from 'next/link'
+import { Typography } from '@mui/material'
 
 interface Location {
   name: string,
@@ -41,7 +40,11 @@ interface IData {
 }
 
 
-const Home: any = (data: any) => {
+const SearchPage: any = (data: any) => {
+
+  useEffect(() => {
+    console.log(data)
+  },[])
 
   return (
     <div className={styles.container}>
@@ -51,19 +54,28 @@ const Home: any = (data: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        
-        <InputSearch />
 
-        <HeroCardContainer characters={data.results} />
+      {
+        data.results ? 
+        <main className={styles.main}>
+          <Typography variant='h6' >Resultados</Typography>
+          <Link href='/characters'>
+            <a>Go Back</a>
+          </Link>
+          <Typography>Se encontraron {data.results.length} resultados</Typography>
+          <HeroCardContainer characters={data?.results} />
 
-        {/* {       
-          data?.data?.results?.map( (char:ICharacter) => <HeroCard key={char.id} data={char} />)   
-        } */}
-      </main>
+        </main>  :
+
+        <main className={styles.main} >
+          <h3>No se encontraron resultados</h3>
+          <Link href='/characters'>
+            <a>Go Back</a>
+          </Link>
+        </main>
+
+      }
+
 
       <footer className={styles.footer}>
         <a
@@ -81,15 +93,16 @@ const Home: any = (data: any) => {
   )
 }
 
-export default Home
+export default SearchPage
 
 
-export async function getStaticProps() {
-  const res = await fetch(`https://rickandmortyapi.com/api/character/?page=2`)
-  const data = await res.json()
+export async function getServerSideProps({ query: {term ,name ,status} }) {
 
-  return {
-    props: data ,
-    revalidate: 1,
+    const res = await fetch(`https://rickandmortyapi.com/api/character/?name=${name}&gender=${term}&status=${status}`)
+
+    const data = await res.json()
+  
+    return {
+      props: data
+    }
   }
-}

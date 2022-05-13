@@ -32,18 +32,16 @@ const SearchForm = () => {
   }));
 
   return (
-    <Box width={400} py={3} px={5} sx={{ border: '1px solid #B0BEC5' }} borderRadius={4} display='flex' flexDirection='column' border={2}  gap={3} >
+    <Box component='form' onSubmit={handleSubmit} width={400} py={3} px={5} sx={{ border: '1px solid #B0BEC5' }} borderRadius={4} display='flex' flexDirection='column' border={2}  gap={2} >
       <Box sx={{ minWidth: 120 }}>
         <FormControl variant="standard" fullWidth>
-          <TextField value={name} onChange={(e) => setName(e.target.value)} id="standard-basic" label="Name" variant="standard" />
+          <TextField value={name} onChange={(e) => setName(e.target.value)} id="standard-basic" label="Character Name" variant="standard" />
         </FormControl>
       </Box>
       <Box sx={{ minWidth: 120 }}>
         <FormControl variant="standard" fullWidth>
-          <InputLabel id="demo-simple-select-standard-label">Gender</InputLabel>
+          <InputLabel id="gender">Gender</InputLabel>
           <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             label="Gender"
@@ -57,10 +55,8 @@ const SearchForm = () => {
       </Box>
       <Box sx={{ minWidth: 120 }}>
         <FormControl variant="standard" fullWidth>
-          <InputLabel id="demo-simple-select-standard-label">status</InputLabel>
+          <InputLabel id="status">Status</InputLabel>
           <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             label="Status"
@@ -71,11 +67,11 @@ const SearchForm = () => {
           </Select>
         </FormControl>
       </Box>
-      <Box mt={1} px={3} >
+      <Box mt={2} px={3} >
         <ColorButton 
           disabled={!name && !gender && !status} 
-          fullWidth 
-          onClick={handleSubmit} 
+          fullWidth
+          type='submit'
           variant="contained">Search</ColorButton>
       </Box>
     </Box>

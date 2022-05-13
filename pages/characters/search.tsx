@@ -1,5 +1,4 @@
 import { HeroCardContainer } from '../../components/HeroCardContainer'
-import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
 import { IconButton, Typography } from '@mui/material'
 import { Layout } from '../../components/Layout'
@@ -10,37 +9,29 @@ import { IData } from 'types'
 const SearchPage: any = ({data}: IData) => {
 
   return (
-    <div className={styles.container}>
-       <Layout title='Search Page' >
-          {
-            data?.results ? 
-            <>
-              <Typography variant='h3' fontWeight={700} >Results</Typography>
-              <Box display='flex' width='100%' alignItems='center' px={2} my={3} justifyContent='space-between' >
-                <Link href='/characters'>
-                  <a>
-                    <IconButton aria-label="delete" size="large">
-                      <ArrowBackIcon fontSize="inherit" />
-                    </IconButton>
-                    <Typography fontWeight={700} component='span' variant='h6' >Back</Typography>
-                  </a>
-                </Link>
-                <Typography fontWeight={700} component='span' variant='h6'>{data.results.length} results</Typography>
-              </Box>
-              <HeroCardContainer characters={data?.results} />
+    <Layout title='Search Page' >
+      <Typography variant='h3' fontWeight={700} >Results</Typography>
+      <Box display='flex' width='100%' alignItems='center' px={2} my={3} justifyContent='space-between' >
+        <Link href='/characters'>
+          <a>
+            <IconButton aria-label="delete" size="large">
+              <ArrowBackIcon fontSize="inherit" />
+            </IconButton>
+            <Typography fontWeight={700} component='span' variant='h6' >Back</Typography>
+          </a>
+        </Link>
+        {
+          data.results && 
+            <Typography fontWeight={700} component='span' variant='h6'>{ data.results.length } results</Typography>
+        }
+      </Box>
+      {
+        data?.results ? 
+          <HeroCardContainer characters={data?.results} /> :
+          <h3>No se encontraron resultados</h3>
+      }
 
-            </>  :
-            <>
-              <h3>No se encontraron resultados</h3>
-              <Link href='/characters'>
-                <a>Go Back</a>
-              </Link>
-            </>
-
-          }
-
-       </Layout>
-    </div>
+    </Layout>
   )
 }
 

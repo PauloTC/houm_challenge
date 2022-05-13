@@ -17,7 +17,7 @@ const Layout = ({children , title}: any) => {
         md:'95%'
       }}>
         <Typography color="#424242" fontWeight='bold' fontSize={{
-          xs: '2rem',
+          xs: '2.8rem',
           md:'3.75rem'
         }} variant='h2'>
           <Box display='inline-block' color='#FF452B'>Houm</Box> challenge 

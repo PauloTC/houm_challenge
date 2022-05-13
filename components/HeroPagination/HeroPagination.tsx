@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const HeroPagination = ({totalPages} : any) => {
@@ -11,8 +11,6 @@ const HeroPagination = ({totalPages} : any) => {
   const router = useRouter()
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    console.log(value)
-
     setCurrentPage(value)
     router.push(`/characters/?page=${value}`)
   };

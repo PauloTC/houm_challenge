@@ -3,14 +3,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useEffect } from 'react';
 import Box from '@mui/material/Box';
+import { ICharacter } from 'types';
 
-const HeroCard = ({data}: any) => {
+const HeroCard = ({character}: ICharacter) => {
 
-  useEffect(()=> {
-    console.log(data)
-  },[])
+  const { image, name, gender , species , status } = character
 
   return (
     <Card sx={{ maxWidth: 200 }}>
@@ -18,20 +16,20 @@ const HeroCard = ({data}: any) => {
         <CardMedia
           component="img"
           height="250"
-          image={data.image}
-          alt="green iguana"
+          image={image}
+          alt={name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h6">{data?.name}</Typography>
+          <Typography gutterBottom fontWeight={600} variant="h6">{name}</Typography>
           <Box display='flex' flexDirection='column' >
             <Typography variant="body2" color="text.secondary">
-              Gender: {data.gender}
+              Gender: {gender}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Specie: {data.species}
+              Specie: {species}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Status: {data.status}
+              Status: {status}
             </Typography>
           </Box>
         </CardContent>

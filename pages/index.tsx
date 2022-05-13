@@ -5,8 +5,6 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import { HeroCard } from '../components/HeroCard'
 import { HeroCardContainer } from '../components/HeroCardContainer'
-import { InputSearch } from '../components/InputSearch'
-
 interface Location {
   name: string,
   url: string
@@ -51,19 +49,12 @@ const Home: any = (data: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         
-        <InputSearch />
-
-        <HeroCardContainer characters={data.results} />
-
-        {/* {       
-          data?.data?.results?.map( (char:ICharacter) => <HeroCard key={char.id} data={char} />)   
-        } */}
-      </main>
+      </>
 
       <footer className={styles.footer}>
         <a

@@ -5,10 +5,11 @@ import { FormControl } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Button from '@mui/material/Button';
+import Button, { ButtonProps } from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 
-const InputSearch = () => {
+const SearchForm = () => {
 
   const router = useRouter()
 
@@ -20,6 +21,15 @@ const InputSearch = () => {
     e.preventDefault()
     router.push(`/characters/search?name=${name}&term=${gender}&status=${status}`)
   }
+
+
+  const ColorButton = styled(Button)<ButtonProps>(() => ({
+    color: '#fff',
+    backgroundColor: '#FF452B',
+    '&:hover': {
+      backgroundColor: '#C21800',
+    },
+  }));
 
   return (
     <Box width={400} py={3} px={5} sx={{ border: '1px solid #B0BEC5' }} borderRadius={4} display='flex' flexDirection='column' border={2}  gap={3} >
@@ -55,17 +65,21 @@ const InputSearch = () => {
             onChange={(e) => setStatus(e.target.value)}
             label="Status"
           >
-            <MenuItem value='alive'>alive</MenuItem>
-            <MenuItem value='dead'>dead</MenuItem>
-            <MenuItem value='unknown'>unknown</MenuItem>
+            <MenuItem value='alive'>Alive</MenuItem>
+            <MenuItem value='dead'>Dead</MenuItem>
+            <MenuItem value='unknown'>Unknown</MenuItem>
           </Select>
         </FormControl>
       </Box>
       <Box mt={1} px={3} >
-        <Button disabled={!name && !gender && !status} fullWidth sx={{ background: '#FF452B' }} onClick={handleSubmit} variant="contained">Search</Button>
+        <ColorButton 
+          disabled={!name && !gender && !status} 
+          fullWidth 
+          onClick={handleSubmit} 
+          variant="contained">Search</ColorButton>
       </Box>
     </Box>
   )
 }
 
-export default InputSearch;
+export default SearchForm;

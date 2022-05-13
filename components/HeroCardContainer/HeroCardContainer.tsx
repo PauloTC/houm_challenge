@@ -1,30 +1,14 @@
 import Box from '@mui/material/Box';
-import { useEffect } from 'react';
 import HeroCard from '../HeroCard/HeroCard';
+import { ICharacters } from 'types'
 
-interface ICharacter {
-  created: string,
-  episode: string[],
-  gender: string,
-  id: number,
-  image: string,
-  location: Location,
-  name: string,
-  origin: Location,
-  species: string,
-  status: string,
-  type: string,
-  url: string
-} 
-
-
-const HeroCardContainer = ({characters}: any) => {
+const HeroCardContainer = ({characters}: ICharacters) => {
 
   return (
-    <Box display='flex' flexWrap='wrap' gap={3} >
+    <Box display='flex' flexWrap='wrap' justifyContent='center' gap={3} >
       {
         characters?.map((char : any) => (
-          <HeroCard key={char.id} data={char}  />
+          <HeroCard key={char.id} character={char}  />
         ))
       }
     </Box>

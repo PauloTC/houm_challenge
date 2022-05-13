@@ -11,14 +11,39 @@ const Characters = ({data}: IData) => {
   return (
   
     <Layout title='Characters Page' >
-        <Box display='flex' my={4} px={4} gap={8} alignItems='center' justifyContent='space-between'>
-          <Box textAlign='right' width={500}>
-            <Typography  variant='h3' fontWeight={700} component='p'>Find your favorite <Box color='#FF452B'component='span' >character</Box> </Typography>
-          </Box>
-          <SearchForm />
+      <Box 
+        display='flex'
+        flexDirection={{
+          xs:'column',
+          md:'row'
+        }}
+        my={4}
+        px={4} 
+        gap={{
+          xs: 4,
+          md: 8
+        }} 
+        alignItems='center' 
+        justifyContent='space-between'>
+        <Box 
+          textAlign={{
+            xs:'center',
+            md:'right'
+          }} 
+          width={500}>
+          <Typography 
+            fontSize={{
+              xs: '1.8rem',
+              md:'3rem'
+            }}
+            variant='h3' 
+            fontWeight={700} 
+            component='p'>Find your favorite <Box color='#FF452B'component='span' >character</Box> </Typography>
         </Box>
+        <SearchForm />
+      </Box>
 
-        <HeroCardContainer characters={data?.results} />
+      <HeroCardContainer characters={data?.results} />
 
       <HeroPagination totalPages={data?.info?.pages} />
     </Layout>

@@ -12,8 +12,14 @@ const Layout = ({children , title}: any) => {
         <link rel="icon" href="/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet" />
       </Head>
-      <Box my={5} mx='auto' textAlign='center' maxWidth='85%' >
-        <Typography color="#424242" fontWeight='bold' variant='h2'>
+      <Box my={5} mx='auto' textAlign='center' maxWidth={{
+        xs:'100%',
+        md:'95%'
+      }}>
+        <Typography color="#424242" fontWeight='bold' fontSize={{
+          xs: '2rem',
+          md:'3.75rem'
+        }} variant='h2'>
           <Box display='inline-block' color='#FF452B'>Houm</Box> challenge 
         </Typography>
         { children }
